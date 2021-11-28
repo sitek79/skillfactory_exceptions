@@ -22,7 +22,15 @@ public class Main {
         // скопируем файл свойств
         fileworker.copyFile();
         // читаем файл резервной копии
-        fileworker.readFile();
+        try {
+            fileworker.readFile();
+        } catch (Exception e) {
+            System.err.println("getMessage():" + e.getMessage());
+            System.err.println("getLocalizedMessage():" + e.getLocalizedMessage());
+            System.err.println("toString():" + e);
+            System.err.println("printStackTrace():");
+            e.printStackTrace(System.out);
+        }
         // читаем выборочно данные из файла свойств
         fileworker.readProperties();
         try {

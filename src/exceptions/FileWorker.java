@@ -17,12 +17,16 @@ public class FileWorker {
         // если объект представляет каталог
         if (dir1.isDirectory()) {
             // получаем все вложенные объекты в каталоге
-            for (File item : dir1.listFiles()) {
-                if (item.isDirectory()) {
-                    System.out.println(item.getName() + "  \t каталог");
-                } else {
-                    System.out.println(item.getName() + "\t файл");
+            try {
+                for (File item : dir1.listFiles()) {
+                    if (item.isDirectory()) {
+                        System.out.println(item.getName() + "  \t каталог");
+                    } else {
+                        System.out.println(item.getName() + "\t файл");
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println("Ошибка при получении объектов каталога");
             }
         }
     }
@@ -103,6 +107,8 @@ public class FileWorker {
             System.err.println("Во входных данных недопустимый символ Юникода.");
         } catch (ClassCastException e) {
             System.err.println("Объект свойств содержит какие-либо ключи или значения, которые не являются строками.");
+        } catch (Exception e) {
+            System.err.println("Перехвачено то что пропустили все другие перехватчики исключений");
         }
     }
 }
